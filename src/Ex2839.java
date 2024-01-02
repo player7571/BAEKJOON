@@ -7,7 +7,7 @@ public class Ex2839 {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bf.readLine());
-        int fSugar = 0;
+        int fSugar;
         int tSugar = 1;
         int i = 1;
         if(n%5==0) {
