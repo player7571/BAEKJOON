@@ -17,31 +17,25 @@ public class Ex2579 {
         }
         dp[N][0] = stair[N];
         dp[N][1] = stair[N];
-        int count = 1;
+        boolean count = true;
         System.out.println(maxStair(stair, dp, count, N));
     }
-    static int maxStair(int [] stair, int [][] dp, int count, int N){
+    static int maxStair(int [] stair, int [][] dp, boolean count, int N){
         if(N==dp.length) {
             return Math.max(Math.max(dp[1][0], dp[1][1]), Math.max(dp[2][0],dp[2][1]));
         }
         if(N<2) return maxStair(stair, dp, count, dp.length);
-        if(dp[N-1][0] < dp[N][1] + stair[N-1] && count==1) {
+        if(dp[N-1][0] < dp[N][1] + stair[N-1] && count) {
             dp[N-1][0]=dp[N][1] + stair[N-1];
-            count = 0;
+            count = false;
             maxStair(stair, dp, count, N-1);
         }
-        count = 1;
+        count = true;
         if(dp[N-2][1] < dp[N][1] + stair[N-2]) {
             dp[N-2][1] = dp[N][1] + stair[N-2];
         }
         if(dp[N-2][1] < dp[N][0] + stair[N-2]) {
             dp[N-2][1] = dp[N][0] + stair[N-2];
-        }
-        if(dp[N-2][0] < dp[N][1] + stair[N-2]) {
-            dp[N-2][0] = dp[N][1] + stair[N-2];
-        }
-        if(dp[N-2][0] < dp[N][0] + stair[N-2]) {
-            dp[N-2][0] = dp[N][0] + stair[N-2];
         }
         maxStair(stair, dp, count, N-2);
         return maxStair(stair, dp, count, dp.length);
